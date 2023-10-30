@@ -1,24 +1,51 @@
-class Franklin(pg.sprite.Sprite):
-    """An alien space ship. That slowly moves down the screen."""
+import pygame as pg
 
-    speed = 13
-    animcycle = 12
-    images: List[pg.Surface] = []
+class FranklinImp(pg.sprite.Sprite):
+    """A little imp that destroys your lab."""
 
-    def __init__(self, *groups):
-        pg.sprite.Sprite.__init__(self, *groups)
-        self.image = self.images[0]
+    def __init__(self,image_path=None):
+        pg.sprite.Sprite.__init__(self)
+        self.image = pg.image.load(image_path).convert()
         self.rect = self.image.get_rect()
-        self.facing = random.choice((-1, 1)) * Alien.speed
-        self.frame = 0
-        if self.facing < 0:
-            self.rect.right = SCREENRECT.right
-
+        self.move = 10
+        screen = pg.display.get_surface()
+        self.area = screen.get_rect()
+        self.rect.topleft = 10, 90
     def update(self):
-        self.rect.move_ip(self.facing, 0)
-        if not SCREENRECT.contains(self.rect):
-            self.facing = -self.facing
-            self.rect.top = self.rect.bottom + 1
-            self.rect = self.rect.clamp(SCREENRECT)
-        self.frame = self.frame + 1
-        self.image = self.images[self.frame // self.animcycle % 3]
+        self._walk()
+
+    def _walk(self):
+        newpos = self.rect.move((self.move, 0))
+       
+        self.rect = newpos
+
+    def your_methods():
+        pass
+
+
+# class TestTube(pg.sprite.Sprite):
+#     """Exploding testubes."""
+
+    
+
+#     def __init__(self, *groups):
+#         pg.sprite.Sprite.__init__(self, *groups)
+#         self.image = self.images[0]
+#         self.rect = self.image.get_rect()
+  
+
+#     def update(self):
+#         if self.explode:
+
+#     def explode(self):
+#          newpos = self.rect.move((self.move, 0))
+#         if not self.area.contains(newpos):
+#             if self.rect.left < self.area.left or self.rect.right > self.area.right:
+#                 self.move = -self.move
+#                 newpos = self.rect.move((self.move, 0))
+#                 self.image = pg.transform.flip(self.image, True, False)
+#         self.rect = newpos
+
+#     def your_methods():
+#         pass
+
