@@ -5,7 +5,7 @@ class FranklinImp(pg.sprite.Sprite):
 
     def __init__(self,image_path=None):
         pg.sprite.Sprite.__init__(self)
-        self.image = load_and_scale(image_path, 0.1)
+        self.image = load_and_scale(image_path, 0.5)
         self.rect = self.image.get_rect()
         self.rect.center = (200,100)
         self.move = 10

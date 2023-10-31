@@ -8,7 +8,7 @@ def main():
         a loop until the function returns."""
         # Initialize Everything
         pg.init()
-        screen = Screen(color=(255,255,255))#image_path="data/lab.png", scaled=True)
+        screen = Screen(image_path="data/lab.jpg", scaled=False)
         screen.create_background()
         screen.display()
         pg.display.flip()
@@ -33,7 +33,7 @@ def main():
                      imp.update()
                 # Interactions
 
-            screen.display()
+            screen.screen.blit(screen.background, (0, 0))
             allsprites.draw(screen.screen)
             pg.display.flip()
             
