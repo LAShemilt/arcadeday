@@ -1,22 +1,23 @@
 import pygame as pg
-
+from utils import load_and_scale
 class FranklinImp(pg.sprite.Sprite):
     """A little imp that destroys your lab."""
 
     def __init__(self,image_path=None):
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.image.load(image_path).convert()
+        self.image = load_and_scale(image_path, 0.1)
         self.rect = self.image.get_rect()
+        self.rect.center = (200,100)
         self.move = 10
         screen = pg.display.get_surface()
         self.area = screen.get_rect()
         self.rect.topleft = 10, 90
+    
     def update(self):
         self._walk()
 
     def _walk(self):
         newpos = self.rect.move((self.move, 0))
-       
         self.rect = newpos
 
     def your_methods():

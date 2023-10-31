@@ -1,5 +1,5 @@
 import pygame as pg
-from background import Background
+from background import Screen
 from sprites import FranklinImp
 
 def main():
@@ -8,13 +8,15 @@ def main():
         a loop until the function returns."""
         # Initialize Everything
         pg.init()
-        screen = Background(color = (123,210,10))#image_path="data/lab.png")
+        screen = Screen(color=(255,255,255))#image_path="data/lab.png", scaled=True)
         screen.create_background()
         screen.display()
+        pg.display.flip()
 
         imp = FranklinImp("data/sprite.png")
-        allsprites = pg.sprite.Group((imp))
+        allsprites = pg.sprite.Group(imp)
         clock = pg.time.Clock()
+
         going = True
         while going:
             clock.tick(60)
@@ -26,15 +28,20 @@ def main():
                     going = False
                 elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                     going = False
-
                 # Move the sprite
                 elif event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
                      imp.update()
                 # Interactions
-            allsprites.update()
+
+            screen.display()
+            allsprites.draw(screen.screen)
+            pg.display.flip()
+            
+
+     
 
            
-            allsprites.draw(screen.screen)
+            
 
         pg.quit()
 

@@ -2,9 +2,9 @@ import pygame as pg
 from pathlib import Path
 from utils import load_image
 
-class Background:
-    def __init__(self, image_path=None,display_caption=None, display_width=800, 
-                display_height=400, text="", mouse_visible=False, color=None, scaled=False):
+class Screen:
+    def __init__(self, image_path=None,display_caption=None, display_width=2000, 
+                display_height=1200, text="", mouse_visible=False, color=None, scaled=False):
         self.image=image_path
         self.display_width = display_width
         self.display_height = display_height
@@ -21,7 +21,7 @@ class Background:
        
         self.background= self.create_background()      
         self.screen.blit(self.background, (0, 0))
-        pg.display.flip()
+
 
     def create_background(self):
         self.background = pg.Surface(self.screen.get_size())
