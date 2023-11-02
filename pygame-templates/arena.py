@@ -2,9 +2,9 @@ import pygame as pg
 from pathlib import Path
 from utils import load_image
 
-class Screen:
+class Arena:
     def __init__(self, image_path=None,display_caption=None, display_width=2000, 
-                display_height=1200, text="", mouse_visible=False, color=None, scaled=False):
+                display_height=1200, text="", mouse_visible=False, color=None):
         self.image=image_path
         self.display_width = display_width
         self.display_height = display_height
@@ -12,8 +12,7 @@ class Screen:
         self.color = color
         self.text = text
         self.display_caption=display_caption
-        self.scaled = scaled
-        self.screen = pg.display.set_mode((self.display_width, self.display_height), pg.SCALED) 
+        self.screen = pg.display.set_mode((self.display_width, self.display_height)) 
 
     def display(self):
         if self.display_caption:
@@ -26,16 +25,11 @@ class Screen:
     def create_background(self):
         self.background = pg.Surface(self.screen.get_size())
         if self.color:
-            if self.scaled:
-              self.screen = pg.display.set_mode((self.display_width, self.display_height), pg.SCALED)
             self.background.convert()
             self.background.fill(self.color)
         if self.image:
             self.background=pg.image.load(self.image).convert()
-            if self.scaled:
-                self.screen = pg.display.set_mode((self.background.get_size()), pg.SCALED)
-            else:
-                self.screen = pg.display.set_mode((self.background.get_size()))
+            self.screen = pg.display.set_mode((self.background.get_size()))
         if self.text:
             self.add_text()
         return self.background
@@ -49,7 +43,9 @@ class Screen:
             textpos = text.get_rect(centerx=self.background.get_width() / 2, y=10)
             self.background.blit(text, textpos)
 
-  
+    # TODO
+    # put in correct scaling and tiling function
+    # check add text works
        
      
        

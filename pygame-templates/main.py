@@ -1,5 +1,5 @@
 import pygame as pg
-from background import Screen
+from arena import Arena
 from sprites import FranklinImp
 
 def main():
@@ -8,9 +8,9 @@ def main():
         a loop until the function returns."""
         # Initialize Everything
         pg.init()
-        screen = Screen(image_path="data/lab.jpg", scaled=False)
-        screen.create_background()
-        screen.display()
+        arena = Arena(image_path="data/lab.jpg")
+        arena.create_background()
+        arena.display()
         pg.display.flip()
 
         imp = FranklinImp("data/sprite.png")
@@ -33,8 +33,8 @@ def main():
                      imp.update()
                 # Interactions
 
-            screen.screen.blit(screen.background, (0, 0))
-            allsprites.draw(screen.screen)
+            arena.screen.blit(arena.background, (0, 0))
+            allsprites.draw(arena.screen)
             pg.display.flip()
             
 
