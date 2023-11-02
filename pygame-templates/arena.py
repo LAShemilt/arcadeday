@@ -28,25 +28,15 @@ class Arena:
             self.background.convert()
             self.background.fill(self.color)
         if self.image:
-            self.background=pg.image.load(self.image).convert()
+            try:
+             self.background=pg.image.load(self.image).convert()
+            except pg.error:
+                raise SystemExit(f'Could not load image "{self.image}" {pg.get_error()}')
             self.screen = pg.display.set_mode((self.background.get_size()))
         if self.text:
             self.add_text()
         return self.background
 
-    def add_text(self):
-
-        # Put Text On The Background, Centered
-        if pg.font:
-            font = pg.font.Font(None, 64)
-            text = font.render(self.text, True, (10, 10, 10))
-            textpos = text.get_rect(centerx=self.background.get_width() / 2, y=10)
-            self.background.blit(text, textpos)
-
-    # TODO
-    # put in correct scaling and tiling function
-    # check add text works
-       
      
        
        
