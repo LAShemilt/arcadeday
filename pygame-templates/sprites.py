@@ -32,13 +32,20 @@ class SpriteConfig(pg.sprite.Sprite):
 
 class FranklinImp(SpriteConfig):
     """A little imp that saves your lab."""
-
+    def __init__(self, config, **kwargs):
+        super().__init__(config, **kwargs)
+        self.direction = 1
     def update(self, direction):
         self.direction= direction
         self._walk()
 
     def _walk(self):
         newpos = self.rect.move((self.direction*self.move, 0))
+        self.rect = newpos
+
+    def jump(self):
+        self.direction = -1*self.direction
+        newpos = self.rect.move((0, self.direction*20 ))
         self.rect = newpos
 
     def your_methods():
@@ -65,6 +72,14 @@ class TestTube(SpriteConfig ):
 
         if  self.rect.bottom > self.area.bottom:
             self.rect.center = (self.new_x_pos, self.attributes.start_pos[1])
+    
+    def catch(self):
+        self.rect.inflate(4,4)
+
+
+
+
+
 
 
         

@@ -1,6 +1,6 @@
 import pygame as pg
 from arena import Arena
-from sprites import FranklinImp, TestTube
+from sprites import FranklinImp, TestTube, SpriteConfig
 
 def main():
         """this function is called when the program starts.
@@ -16,6 +16,7 @@ def main():
         imp = FranklinImp("configs/sprite_config.yml")
         tube = TestTube("configs/testtube_config.yml", arena.background)
         allsprites = pg.sprite.Group(imp, tube)
+        tubes = pg.sprite.Group(tube)
         clock = pg.time.Clock()
 
 
@@ -35,17 +36,19 @@ def main():
                      imp.update(-1)
                 elif event.type == pg.KEYDOWN and event.key == pg.K_RIGHT:
                      imp.update(1)
+                
                 # Interactions
-
+                if pg.sprite.spritecollide(imp, tubes, 1):
+                     tube.catch()
+                     imp.jump()
+                     game_over= SpriteConfig("configs/game_over_config.yml")
+                     allsprites.add(game_over)
+        
+            tube.update()
             arena.screen.blit(arena.background, (0, 0))
             allsprites.draw(arena.screen)
-            tube.update()
-            pg.display.flip()
             
-
-     
-
-           
+            pg.display.flip()
             
 
         pg.quit()
