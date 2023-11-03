@@ -1,16 +1,15 @@
 import pygame as pg
 from utils import load_and_scale, read_config
 from pathlib import Path
+from random import randint, choice
 
-class FranklinImp(pg.sprite.Sprite):
-    """A little imp that destroys your lab."""
-
+class SpriteConfig(pg.sprite.Sprite):
     def __init__(self, config, **kwargs):
         pg.sprite.Sprite.__init__(self)
 
         if config:
             self._attributes = read_config(config)
-        elif kwargs:
+        if kwargs:
             self._attributes = self.attributes(kwargs)
 
         self.image = load_and_scale(Path("data").joinpath(self.attributes.image_path), self.attributes.scale)
@@ -29,40 +28,45 @@ class FranklinImp(pg.sprite.Sprite):
         if kwargs:
                 self._attributes.update(kwargs)
     
-    def update(self):
+
+
+class FranklinImp(SpriteConfig):
+    """A little imp that saves your lab."""
+
+    def update(self, direction):
+        self.direction= direction
         self._walk()
 
     def _walk(self):
-        newpos = self.rect.move((self.move, 0))
+        newpos = self.rect.move((self.direction*self.move, 0))
         self.rect = newpos
 
     def your_methods():
         pass
+    ## Add methods to move your sprite below , call them in the update function above. 
 
 
-# class TestTube(pg.sprite.Sprite):
-#     """Exploding testubes."""
+class TestTube(SpriteConfig ):
+    """Falling testubes."""
+    def __init__(self,config, background, **kwarg):
+        super().__init__(config, **kwarg)
+        
+        self.area= background.get_rect()
+        
+    @property
+    def new_x_pos(self):
 
-    
+        self._new_x_pos =randint(self.area.left+self.rect.width, self.area.right-self.rect.width)
+        return self._new_x_pos
 
-#     def __init__(self, *groups):
-#         pg.sprite.Sprite.__init__(self, *groups)
-#         self.image = self.images[0]
-#         self.rect = self.image.get_rect()
-  
+    def update(self):
+        newpos= self.rect.move(( 0, self.move))
+        self.rect = newpos
 
-#     def update(self):
-#         if self.explode:
+        if  self.rect.bottom > self.area.bottom:
+            self.rect.center = (self.new_x_pos, self.attributes.start_pos[1])
 
-#     def explode(self):
-#          newpos = self.rect.move((self.move, 0))
-#         if not self.area.contains(newpos):
-#             if self.rect.left < self.area.left or self.rect.right > self.area.right:
-#                 self.move = -self.move
-#                 newpos = self.rect.move((self.move, 0))
-#                 self.image = pg.transform.flip(self.image, True, False)
-#         self.rect = newpos
 
-#     def your_methods():
-#         pass
+        
+
 

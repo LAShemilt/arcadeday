@@ -7,7 +7,7 @@ class Arena:
 
         if config:
             self._attributes = read_config(config)
-        elif kwargs:
+        if kwargs:
             self._attributes = self.attributes(kwargs)
 
     @property
