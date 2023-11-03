@@ -3,15 +3,14 @@ from utils import load_and_scale
 class FranklinImp(pg.sprite.Sprite):
     """A little imp that destroys your lab."""
 
-    def __init__(self,image_path=None):
+    def __init__(self,image_path=None, scale=1, start_pos=(0,0)):
         pg.sprite.Sprite.__init__(self)
-        self.image = load_and_scale(image_path, 0.5)
+        self.image = load_and_scale(image_path, scale)
         self.rect = self.image.get_rect()
-        self.rect.center = (200,100)
+        self.rect.center = (start_pos[0],start_pos[1])
         self.move = 10
         screen = pg.display.get_surface()
         self.area = screen.get_rect()
-        self.rect.topleft = 10, 90
     
     def update(self):
         self._walk()

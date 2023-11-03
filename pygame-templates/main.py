@@ -8,7 +8,7 @@ def main():
         a loop until the function returns."""
         # Initialize Everything
         pg.init()
-        arena = Arena(image_path="data/lab.jpg")
+        arena = Arena(config="configs/arena_config.yml")
         arena.create_background()
         arena.display()
         pg.display.flip()

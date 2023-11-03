@@ -1,0 +1,6 @@
+color: [0,0,0] # set RGB values up to 255 to set your background colour
+image_path: lab.jpg # name of your image file
+display_width: 2000 # display width in pixels
+display_height: 400 # display height in pixels
+display_caption: RFI-Arcade # display window caption
+mouse_visible: False # If your game requires a mouse to play set to True, if not set to False

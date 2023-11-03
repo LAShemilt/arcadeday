@@ -11,3 +11,6 @@ def load_and_scale( image_path, scale_factor):
     size = (size[0] * scale_factor, size[1] * scale_factor)
     image = pg.transform.scale(image, size)
     return image
+
+def config_reader(config):
+    pass
