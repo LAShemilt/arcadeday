@@ -1,6 +1,7 @@
 import pygame as pg
 from pathlib import Path
-
+import yaml
+from munch import Munch
 
 def load_and_scale( image_path, scale_factor):
     try:
@@ -12,5 +13,7 @@ def load_and_scale( image_path, scale_factor):
     image = pg.transform.scale(image, size)
     return image
 
-def config_reader(config):
-    pass
+def read_config(config):
+        with open(config, 'r') as file:
+            attributes = Munch(yaml.safe_load(file))
+        return attributes

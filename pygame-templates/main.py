@@ -13,7 +13,7 @@ def main():
         arena.display()
         pg.display.flip()
 
-        imp = FranklinImp("data/sprite.png")
+        imp = FranklinImp("configs/sprite_config.yml")
         allsprites = pg.sprite.Group(imp)
         clock = pg.time.Clock()
 

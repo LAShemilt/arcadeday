@@ -1,16 +1,33 @@
 import pygame as pg
-from utils import load_and_scale
+from utils import load_and_scale, read_config
+from pathlib import Path
+
 class FranklinImp(pg.sprite.Sprite):
     """A little imp that destroys your lab."""
 
-    def __init__(self,image_path=None, scale=1, start_pos=(0,0)):
+    def __init__(self, config, **kwargs):
         pg.sprite.Sprite.__init__(self)
-        self.image = load_and_scale(image_path, scale)
+
+        if config:
+            self._attributes = read_config(config)
+        elif kwargs:
+            self._attributes = self.attributes(kwargs)
+
+        self.image = load_and_scale(Path("data").joinpath(self.attributes.image_path), self.attributes.scale)
         self.rect = self.image.get_rect()
-        self.rect.center = (start_pos[0],start_pos[1])
-        self.move = 10
+        self.rect.center = (self.attributes.start_pos[0], self.attributes.start_pos[1])
+        self.move = self.attributes.move
         screen = pg.display.get_surface()
         self.area = screen.get_rect()
+
+    @property
+    def attributes(self):
+        return self._attributes
+    
+    @attributes.setter
+    def attributes(self, **kwargs):
+        if kwargs:
+                self._attributes.update(kwargs)
     
     def update(self):
         self._walk()

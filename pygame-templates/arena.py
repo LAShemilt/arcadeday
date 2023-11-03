@@ -1,13 +1,12 @@
 import pygame as pg
 from pathlib import Path
-import yaml
-from munch import Munch
+from utils import read_config
 
 class Arena:
     def __init__(self, config , **kwargs):
 
         if config:
-            self._attributes = self.read_config(config)
+            self._attributes = read_config(config)
         elif kwargs:
             self._attributes = self.attributes(kwargs)
 
@@ -19,12 +18,7 @@ class Arena:
     def attributes(self, **kwargs):
         if kwargs:
                 self._attributes.update(kwargs)
-        
-    @staticmethod
-    def read_config(config):
-        with open(config, 'r') as file:
-            attributes = Munch(yaml.safe_load(file))
-        return attributes
+   
 
     def display(self):
         if self.attributes.display_caption:
