@@ -1,6 +1,11 @@
 name: pygame
 channels:
   - cogsci
+  - anaconda
+  - conda-forge
 dependencies:
   - python=3.11
   - pip
+  - pygame
+  - munch
+  - yaml
