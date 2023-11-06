@@ -55,7 +55,7 @@ def main():
             tube.update()
             arena.screen.blit(arena.background, (0, 0))
             allsprites.draw(arena.screen)
-            
+            # Display changes.
             pg.display.flip()     
 
         pg.quit()
