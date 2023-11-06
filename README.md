@@ -72,3 +72,4 @@ def move_right(self):
 
 The main.py script is where the game is launched  and executed. The structure of the script is in three parts: initialize the sprites and arena, designing the game loop, running the game.
 In the main method you need to first initialize your game using the pg.init command. Then create instances of all your sprites and your background.  You then need to set up a clock that controls the frame rate of your game.
+
