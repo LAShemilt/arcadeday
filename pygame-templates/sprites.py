@@ -11,7 +11,7 @@ class SpriteConfig(pg.sprite.Sprite):
         if kwargs:
             self._attributes = self.attributes(kwargs)
 
-        self.image = load_and_scale("data/" + self.attributes.image_path), self.attributes.scale)
+        self.image = load_and_scale("data/" + self.attributes.image_path, self.attributes.scale)
         self.rect = self.image.get_rect()
         self.rect.center = (self.attributes.start_pos[0], self.attributes.start_pos[1])
         self.move = self.attributes.move

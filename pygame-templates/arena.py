@@ -37,7 +37,7 @@ class Arena:
              self.background=pg.image.load("data/" + self.attributes.image_path).convert()
             except pg.error:
                 raise SystemExit(f'Could not load image "{self.attributes.image_path}" {pg.get_error()}')
-            self.screen = pg.display.set_mode((self.background.get_size()))
+            self.screen = pg.display.set_mode(self.background.get_size(), pg.RESIZABLE)
 
         return self.background
 
