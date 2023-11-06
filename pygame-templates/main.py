@@ -41,6 +41,7 @@ def main():
                 if pg.sprite.spritecollide(imp, tubes, 1):
                      tube.catch()
                      imp.jump()
+                     tube.update()
                      game_over= SpriteConfig("configs/game_over_config.yml")
                      allsprites.add(game_over)
         

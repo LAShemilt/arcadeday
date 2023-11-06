@@ -74,7 +74,7 @@ class TestTube(SpriteConfig ):
             self.rect.center = (self.new_x_pos, self.attributes.start_pos[1])
     
     def catch(self):
-        self.rect.inflate(4,4)
+        self.rect.inflate(40,40)
 
 
 
