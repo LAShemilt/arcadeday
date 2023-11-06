@@ -1,5 +1,4 @@
 import pygame as pg
-from pathlib import Path
 from utils import read_config
 
 class Arena:
@@ -35,7 +34,7 @@ class Arena:
             self.background.fill(self.attributes.color)
         if self.attributes.image_path:
             try:
-             self.background=pg.image.load(Path("data").joinpath(self.attributes.image_path)).convert()
+             self.background=pg.image.load("data/" + self.attributes.image_path).convert()
             except pg.error:
                 raise SystemExit(f'Could not load image "{self.attributes.image_path}" {pg.get_error()}')
             self.screen = pg.display.set_mode((self.background.get_size()))
